@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--构造器实例化-->
+    <bean id="bean1" class="mian.com.ssm2.chp1.bean.Beans1"></bean>
+
+    <!--静态工厂方式实例化-->
+    <bean id="bean2"
+          class="mian.com.ssm2.chp1.BeansFactory.Beans2Factory"
+          factory-method="creatBeans2">
+    </bean>
+
+    <!--实例工厂方式实例化-->
+    <bean id="mybean3" class="mian.com.ssm2.chp1.BeansFactory.Beans3Factory"></bean>
+    <bean id="bean3" factory-bean="mybean3"
+          factory-method="creatBean3"/>
+</beans>

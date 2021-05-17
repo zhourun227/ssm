@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userDao" class="mian.com.ssm4.chp3.Dao.UserDaoImpl"/>
+    <bean id="myAspect1" class="mian.com.ssm4.chp3.Aspect.MyAspect1"/>
+    <aop:config>
+        <aop:aspect ref="myAspect1">
+            <!--配置切入点，通知最后增强哪些方法-->
+            <aop:pointcut  expression="execution(* mian.com.ssm4.chp3.Dao.*.*(..))" id="myPoinCut"/>
+            <aop:before method="myBefore" pointcut-ref="myPoinCut"/>
+            <aop:after-returning method="myAfterReturning" pointcut-ref="myPoinCut" returning="returnVal"/>
+            <aop:around method="myAround" pointcut-ref="myPoinCut"/>
+            <aop:after-throwing method="myAfterThrowing" pointcut-ref="myPoinCut" throwing="e"/>
+            <aop:after method="myAfter" pointcut-ref="myPoinCut"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
